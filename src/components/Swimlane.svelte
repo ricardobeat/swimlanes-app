@@ -116,4 +116,30 @@
     background: var(--color);
     z-index: -1;
   }
+
+  .hover,
+  .invalid {
+    background: rgba(255, 255, 255, 0.5);
+    outline: 2px dashed var(--color);
+  }
+
+  .invalid {
+    position: relative;
+    cursor: text;
+    opacity: 0.5;
+  }
+
+  .invalid > * {
+    opacity: 0.65;
+  }
+
+  .invalid:after {
+    display: block;
+    content: "🚫";
+    font-size: 40px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 </style>

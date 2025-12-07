@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
+  let { text }: { text: string } = $props();
 </script>
 
-<div class="card block p2">xxx</div>
+<div class="card block p2">{text}</div>
 
 <style>
   .card {
