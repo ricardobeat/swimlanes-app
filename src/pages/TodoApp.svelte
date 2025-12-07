@@ -6,7 +6,7 @@
 <vstack class="main">
   <Header />
   <hstack flex gap="2">
-    <Swimlane name="todo" --color="var(--accent-1)" />
+    <Swimlane name="todo" accept={[]} --color="var(--accent-1)" />
     <Swimlane name="doing" --color="var(--accent-2)" />
     <Swimlane name="done" accept={["doing"]} --color="var(--accent-3)" />
   </hstack>
