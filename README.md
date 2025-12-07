@@ -7,11 +7,16 @@ Electron desktop app implemented with Svelte. Server written in Golang.
 
 ## How to run
 
-Use `./run.sh` to install dependencies for both client app and server.
+The `./run.sh` script will install dependencies for both client app and server, then start them in parallel.
+
+Other commands:
 
 - `npm run start`: starts a new dev instance of the Electron desktop app
 - `npm run server:start`: starts a server instance
 - `npm run start:all`: starts both using the `concurrently` package, used by the run script
+- `npm run test`: runs the [Playwright](http://playwright.dev) test suite
+
+To test synchronization, you can start extra app instances by running `npm run start` in a separate terminal.
 
 ## Electron app
 
@@ -25,19 +30,6 @@ src/
 ```
 
 The entry point for the client is the `renderer.ts` file.
-
-### Testing
-
-Run `npm run start` at the project root. You can start multiple instances by running the command in multiple terminals, this will allow testing the synchronization features.
-
-To run the [Playwright](http://playwright.dev) test suite, make sure you have a running server instance, then run:
-
-```sh
-npm run test
-# or: npx playwright test
-```
-
-This will execute a minimal test suite. 
 
 ## Server
 
