@@ -53,7 +53,9 @@ func (s *BoardService) Start() {
 		AllowHeaders: []string{"Content-Type", X_USER_ID_HEADER},
 	}))
 
-	e.Use(middleware.Logger())
+	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
+		Format: "method=${method}, uri=${uri}, status=${status}\n",
+	}))
 
 	e.GET("/events" /*?stream=boardId */, s.EventStream)
 
