@@ -56,7 +56,7 @@ func (s *BoardService) TaskUpdate(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusInternalServerError, "Failed to get board: "+err.Error())
 	}
 
-	existingTask, err := s.Store.GetTask(updatedTask.ID)
+	existingTask, err := s.Store.GetTask(board, updatedTask.ID)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, "Failed to get task: "+err.Error())
 	}
