@@ -11,6 +11,7 @@
 </script>
 
 <vstack h-center v-center flex gap="3">
+  <Spinner />
   <h2>Creating board...</h2>
 </vstack>
 
