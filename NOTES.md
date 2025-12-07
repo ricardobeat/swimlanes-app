@@ -1,12 +1,30 @@
+Client
+=======================================
+
+## User authentication
+
+A unique ID is generated and persisted (encrypted) on disk using the `electron-store` package. This is sent to the server as a `X-User-ID` header to server as a crude stand-in for an actual authentication mechanism (TBD).
+
+## Streaming
+
+The client receives a real-time stream of updates for the current board/list using Server-Sent Events. This keeps the implementation simpler and avoids possible networking issues over WebSockets.
+
+Updates are sent via POST/PUT, with optimistic UI updates + rollback behaviour; events coming from the stream will override local state, so the server can rewrite IDs or any other properties and they will reflect immediately on the client.
+
 ## Electron / ESM
 
-I used a recommended starter kit from the Electron docs that includes electron-forge. This may have been a bit overkill, and let to some tooling issues as it's not fully migrated to ESM (which I understand is possible in the latest electron versions). The `script: "module"` field is not present in the root `package.json`.
+Despite using a [recommended](https://www.electronjs.org/docs/latest/tutorial/boilerplates-and-clis#electron-forge) starter kit from [Electron Forge](https://www.electronforge.io) it's still not very stable. The project is not migrated to ESM (script: module is missing) which creates all kind of issues with build and dependencies.
+
+The main issue I had to set aside due to time, is that the build assets are for some reason missing from the packaged app.
 
 ## Drag & Drop
 
 As I didn't want to bring the complexity of a D&D framework, implemented drag and drop with each column as a target. This means items are not sortable, which is a bit of a UX gap. Ideally it would use each existing item as a drop zone, and allow dropping before/after any position in the list.
 
 This also means I'm not storing item positions in the server, each column is implicitly sorted by last update (bottom-up).
+
+Server
+=======================================
 
 ## Go framework
 

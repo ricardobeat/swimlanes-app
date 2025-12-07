@@ -26,15 +26,18 @@ src/
 
 The entry point for the client is the `renderer.ts` file.
 
-### User authentication
+### Testing
 
-A unique ID is generated and persisted (encrypted) on disk using the `electron-store` package. This is sent to the server as a `X-User-ID` header to server as a crude stand-in for an actual authentication mechanism (TBD).
+Run `npm run start` at the project root. You can start multiple instances by running the command in multiple terminals, this will allow testing the synchronization features.
 
-### Streaming
+To run the [Playwright](http://playwright.dev) test suite, make sure you have a running server instance, then run:
 
-The client receives a real-time stream of updates for the current board/list using Server-Sent Events. This keeps the implementation simpler and avoids possible networking issues over WebSockets.
+```sh
+npm run test
+# or: npx playwright test
+```
 
-Updates are sent via POST/PUT, with optimistic UI updates + rollback behaviour; events coming from the stream will override local state, so the server can rewrite IDs or any other properties and they will reflect immediately on the client.
+This will execute a minimal test suite. 
 
 ## Server
 
