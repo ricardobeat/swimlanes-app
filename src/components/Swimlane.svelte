@@ -103,6 +103,7 @@
 <style>
   .swimlane {
     width: 100%;
+    min-width: 200px;
     user-select: none;
     overflow: hidden;
     overflow-y: auto;
