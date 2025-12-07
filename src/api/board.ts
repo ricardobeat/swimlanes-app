@@ -28,6 +28,7 @@ export async function loadBoard(boardId: string): Promise<void> {
     tasks.set(board.tasks);
   } catch (e) {
     tasks.set([]);
+    console.warn(e);
     throw new Error("Failed to load board " + boardId);
   }
 }

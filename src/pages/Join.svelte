@@ -11,6 +11,7 @@
         await loadBoard(boardId);
         navigate("/board/:boardId", { params: { boardId } });
       } catch (e) {
+        console.warn(e);
         alert("Invalid invite code.");
       }
     }

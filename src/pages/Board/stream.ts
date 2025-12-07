@@ -1,7 +1,6 @@
 import { api } from "src/api/api";
-import { tasks, removeTaskById, updateTask, createTask } from "src/stores/tasks";
+import { removeTaskById, updateTask, createTask } from "src/stores/tasks";
 import type { Task } from "src/types/task";
-import { get } from "svelte/store";
 
 interface Subscription {
   unsubscribe: () => void;

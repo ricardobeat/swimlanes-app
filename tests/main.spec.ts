@@ -4,7 +4,7 @@ import type { ElectronApplication, Page } from "playwright";
 
 process.env.CI = "true";
 
-export async function openDevtools(app: ElectronApplication, page: Page): void {
+export async function openDevtools(app: ElectronApplication, page: Page): Promise<void> {
   const browserWindow = await app.browserWindow(page);
   await browserWindow.evaluate(async (app: BrowserWindow) => {
     app.webContents.openDevTools({ mode: "detach" });
