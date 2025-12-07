@@ -3,8 +3,3 @@
 </script>
 
 <div class="card block p2">{text}</div>
-
-<style>
-  .card {
-  }
-</style>

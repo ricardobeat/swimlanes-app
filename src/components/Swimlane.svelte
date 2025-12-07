@@ -103,9 +103,12 @@
   }
 
   .title {
+    font-weight: 600;
+    font-size: var(--font-size-subtitle);
     position: relative;
     align-self: start;
     text-transform: uppercase;
+    z-index: 2;
   }
 
   .title::after {

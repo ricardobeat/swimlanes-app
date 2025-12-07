@@ -1,5 +1,17 @@
 <script>
-  import TodoApp from "./pages/TodoApp.svelte";
+  import Header from "src/components/Header.svelte";
+  import { Router } from "sv-router";
+  import "./router.ts";
 </script>
 
-<TodoApp />
+<vstack class="main">
+  <Header />
+  <Router />
+</vstack>
+
+<style>
+  .main {
+    padding: 0 var(--u4) var(--u4);
+    justify-content: stretch;
+  }
+</style>

@@ -8,9 +8,8 @@
     app-region: drag;
   }
   .title {
-    font-family: var(--font-title);
-    font-size: 24px;
+    font-family: var(--font-header);
+    font-size: var(--font-size-title);
     font-weight: 600;
-    margin-bottom: 16px;
   }
 </style>

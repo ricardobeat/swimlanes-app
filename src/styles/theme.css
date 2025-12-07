@@ -11,13 +11,24 @@
   --u3: 12px;
   --u4: 24px;
 
-  --font-title: "Fraunces";
+  --font-body: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  --font-header: "Fraunces";
 
-  --background: #fafa87;
+  --color-background: #fafa87;
+  --color-foreground: #080803;
 
-  --accent-1: #f2953e;
-  --accent-2: #ffddcb;
-  --accent-3: #abe0f0;
+  --color-text: #080803;
+
+  --color-accent-1: #f2953e;
+  --color-accent-2: #ffddcb;
+  --color-accent-3: #abe0f0;
+
+  --font-size-title: 24px;
+  --font-size-subtitle: 16px;
+  --font-size-body: 14px;
+
+  --border-default: 1.5px solid var(--color-foreground);
+  --border-radius-1: 3px;
 }
 
 .p1 {
@@ -36,6 +47,39 @@
 .block {
   border-radius: 3px;
   background: white;
-  border: 1.5px solid black;
-  box-shadow: 2px 3px 0 black;
+  border: var(--border-default);
+  box-shadow: 2px 3px 0 var(--color-foreground);
+}
+
+input {
+  border: var(--border-default);
+  padding: var(--u2) var(--u3);
+  border-radius: var(--border-radius-1);
+}
+
+button,
+.button {
+  display: inline-block;
+  border: var(--border-default);
+  padding: var(--u2) var(--u4);
+  font-weight: 600;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  transition: opacity 0.2s ease-in;
+  border-radius: var(--border-radius-1);
+  text-decoration: none;
+  line-height: 1;
+  &:hover {
+    opacity: 0.88;
+  }
+  &:visited {
+    color: var(--color-background);
+  }
+  &:active {
+    transform: translate(1px, 1px);
+  }
+  &.compact {
+    font-size: 0.9rem;
+    padding: var(--u1) var(--u3);
+  }
 }
