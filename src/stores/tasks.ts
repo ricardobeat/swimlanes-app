@@ -1,6 +1,6 @@
 import { writable, get } from "svelte/store";
 
-interface Task {
+export interface Task {
   id: string;
   text: string;
   status: "todo" | "ongoing" | "done";
@@ -19,6 +19,6 @@ export const tasks = writable<Task[]>([
   },
 ]);
 
-export function getTask(id: string): Task {
+export function getTask(id: string): Task | undefined {
   return get(tasks).find((t) => t.id === id);
 }

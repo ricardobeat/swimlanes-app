@@ -1,11 +1,11 @@
 <script lang="ts">
   import Card from "./Card.svelte";
   import CardPlaceholder from "./CardPlaceholder.svelte";
-  import { tasks, MT_PREFIX } from "../stores/tasks.js";
+  import { tasks, MT_PREFIX, type Task } from "../stores/tasks.js";
 
   interface Props {
     accept: string[];
-    name: string;
+    name: Task["status"];
   }
 
   let { name, accept }: Props = $props();
@@ -19,6 +19,8 @@
   }
 
   const handleDragOver = (event: DragEvent): void => {
+    if (!event.dataTransfer) return;
+
     const sourceStatus = parseStatus(event.dataTransfer.types[0]);
     const accepted = accept?.includes(sourceStatus) ?? true;
 
@@ -40,6 +42,7 @@
   };
 
   const handleDrop = (event: DragEvent): void => {
+    if (!event.dataTransfer) return;
     event.preventDefault();
     const mimetype = event.dataTransfer.types[0];
     const sourceStatus = parseStatus(mimetype);
@@ -57,6 +60,7 @@
   };
 
   const dragstart = (event: DragEvent, id: string): void => {
+    if (!event.dataTransfer) return;
     event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.dropEffect = "move";
     event.dataTransfer.setData(currentMimetype, id);
