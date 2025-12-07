@@ -3,7 +3,7 @@ import { writable, get } from "svelte/store";
 interface Task {
   id: string;
   text: string;
-  status: string;
+  status: "todo" | "ongoing" | "done";
 }
 
 export const MT_PREFIX = "text/x-task-";
