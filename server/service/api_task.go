@@ -33,6 +33,17 @@ func (s *BoardService) TaskCreate(c echo.Context) error {
 	return c.JSON(http.StatusCreated, newTask)
 }
 
+func validateStatusChange(t1 model.Task, t2 model.Task) bool {
+	switch {
+	case t1.Status == "todo" && t2.Status == "done":
+		return false
+
+	case t1.Status == "done" && t2.Status == "todo":
+		return false
+	}
+	return true
+}
+
 func (s *BoardService) TaskUpdate(c echo.Context) error {
 	listId := c.Param("boardId")
 	var updatedTask model.Task
@@ -43,6 +54,15 @@ func (s *BoardService) TaskUpdate(c echo.Context) error {
 	board, err := s.Store.GetBoard(listId)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, "Failed to get board: "+err.Error())
+	}
+
+	existingTask, err := s.Store.GetTask(updatedTask.ID)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, "Failed to get task: "+err.Error())
+	}
+
+	if existingTask.Status == "todo" && updatedTask.Status == "done" || existingTask.Status == "done" && updatedTask.Status == "todo" {
+		return echo.NewHTTPError(http.StatusUnprocessableEntity, "Invalid status change")
 	}
 
 	if err = s.Store.UpdateTask(board, updatedTask); err != nil {

@@ -12,6 +12,7 @@ type BoardStore interface {
 	SaveBoard(board *model.Board) error
 	DeleteBoard(id string) error
 	ListBoards() ([]*model.Board, error)
+	GetTask(board *model.Board, id string) (*model.Task, error)
 	CreateTask(board *model.Board, task model.Task) error
 	UpdateTask(board *model.Board, task model.Task) error
 	DeleteTask(board *model.Board, taskID string) error
@@ -71,6 +72,15 @@ func (s *InMemoryBoardStore) CreateTask(board *model.Board, task model.Task) err
 	task.UpdatedAt = time.Now()
 	board.Tasks = append(board.Tasks, task)
 	return nil
+}
+
+func (s *InMemoryBoardStore) GetTask(board *model.Board, id string) (*model.Task, error) {
+	for _, task := range board.Tasks {
+		if task.ID == id {
+			return &task, nil
+		}
+	}
+	return nil, nil
 }
 
 func (s *InMemoryBoardStore) UpdateTask(board *model.Board, task model.Task) error {
