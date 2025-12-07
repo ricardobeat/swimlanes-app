@@ -26,5 +26,5 @@
     "./coverage/**",
     "**/_/**"
   ],
-  "include": ["./src/global.d.ts"]
+  "include": ["src/**/*"]
 }
