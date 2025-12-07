@@ -8,6 +8,8 @@ export interface Task {
 
 export const MT_PREFIX = "text/x-task-";
 
+export const currentBoardId = writable<string>("");
+
 export const tasks = writable<Task[]>([
   { id: "1", text: "Bake the cake", status: "todo" },
   { id: "2", text: "Replace servo #2", status: "todo" },

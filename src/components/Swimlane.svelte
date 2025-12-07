@@ -121,6 +121,7 @@
     transform: rotate(2deg);
     background: var(--color);
     z-index: -1;
+    opacity: 0.7;
   }
 
   .hover,
