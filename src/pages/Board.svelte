@@ -4,7 +4,7 @@
   import InviteCode from "src/components/InviteCode.svelte";
   import { loadBoard } from "src/api/board";
   import { subscribeToBoard } from "./Board/stream";
-  import { route } from "src/router";
+  import { route, p } from "src/router";
 
   const { boardId } = route.params;
 
@@ -29,7 +29,7 @@
   </hstack>
   <div class="actions">
     <a href="##share" onclick={showInviteCode}>share</a> |
-    <a href="/" class="join-link">join another board</a>
+    <a href={p("/")} class="join-link">join another board</a>
   </div>
   <Modal bind:visible={showCode}>
     <vstack gap="2" class="block pv3 ph4">

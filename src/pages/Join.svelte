@@ -7,8 +7,12 @@
   async function join(): Promise<void> {
     boardId = boardId.trim();
     if (boardId) {
-      await loadBoard(boardId);
-      navigate("/board/:boardId", { params: { boardId } });
+      try {
+        await loadBoard(boardId);
+        navigate("/board/:boardId", { params: { boardId } });
+      } catch (e) {
+        alert("Invalid invite code.");
+      }
     }
   }
 

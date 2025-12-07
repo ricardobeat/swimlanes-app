@@ -27,7 +27,7 @@ export async function loadBoard(boardId: string): Promise<void> {
     const board = await api.getBoard(boardId);
     tasks.set(board.tasks);
   } catch (e) {
-    console.error("Failed to load board", e);
     tasks.set([]);
+    throw new Error("Failed to load board " + boardId);
   }
 }
