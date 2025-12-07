@@ -75,7 +75,7 @@
   };
 </script>
 
-<vstack gap="2" flex>
+<vstack gap="2" flex data-testid="swimlane">
   <h2 class="title">{status}</h2>
   <vstack
     gap="2"
@@ -88,7 +88,12 @@
     ondrop={handleDrop}
   >
     {#each items as item (item.id)}
-      <div role="listitem" draggable={true} ondragstart={(event) => dragstart(event, item.id)}>
+      <div
+        role="listitem"
+        draggable={true}
+        ondragstart={(event) => dragstart(event, item.id)}
+        data-testid="draggable-task"
+      >
         <Card text={item.text} />
       </div>
     {:else}

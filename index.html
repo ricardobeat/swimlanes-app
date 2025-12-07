@@ -2,15 +2,18 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self';" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' 'unsafe-inline'; script-src 'self'; connect-src localhost:3002 localhost:5173 ws://localhost:5173;"
+    />
     <link
-      crossorigin
+      crossorigin="anonymous"
       rel="preload"
       as="font"
       type="font/woff2"
       href="./src/assets/Fraunces.woff2"
     />
-    <title>Chlorine</title>
+    <title>Swimlanes.app</title>
   </head>
   <body>
     <script type="module" src="/src/renderer.ts"></script>

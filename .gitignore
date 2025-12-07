@@ -90,3 +90,6 @@ typings/
 
 # Electron-Forge
 out/
+
+# playwright tests
+test-results/

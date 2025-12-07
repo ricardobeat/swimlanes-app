@@ -32,7 +32,11 @@
     onkeydown={handleKeydown}
   />
   <button onclick={join}>Join</button>
-  <p>or <a href={p("/create")} onclick={() => navigate("/create")}>create your own</a></p>
+  <p>
+    or <a href={p("/create")} onclick={() => navigate("/create")} data-testid="create-button"
+      >create your own</a
+    >
+  </p>
 </vstack>
 
 <style>

@@ -36,10 +36,6 @@ The client receives a real-time stream of updates for the current board/list usi
 
 Updates are sent via POST/PUT, with optimistic UI updates + rollback behaviour; events coming from the stream will override local state, so the server can rewrite IDs or any other properties and they will reflect immediately on the client.
 
-### Testing
-
-You can start multiple instances of the desktop app by running `npm run start` again in a separate terminal.
-
 ## Server
 
 The server in `/server` uses the Echo HTTP framework and an SSE module that handles client subscriptions. Data is kept in memory only, restarting the server wipes it out.

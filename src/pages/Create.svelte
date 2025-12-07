@@ -22,7 +22,7 @@
   });
 </script>
 
-<vstack h-center v-center flex gap="3">
+<vstack h-center v-center flex gap="3" data-testid="create-board">
   <Spinner />
   <h2>Creating board...</h2>
 </vstack>

@@ -23,3 +23,9 @@ CORS is enabled for all domains for the sole purpose of demonstration. For a pro
 ## Invite codes
 
 Currently the login key is simply the board ID, which is a random UUID. Ideally this would be a randomly generated invite code which we keep track of along each board, and could have an expiry policy or be revoked.
+
+## AI assistance
+
+For the electron app, I did the initial setup and wrote the first version without AI usage, then used Claude Code to implement the skeleton for some of the features, the API wrapper, small changes and tests. Overall ~80% hand-written.
+
+For the server, since Go is incredibly efficient for LLMs to work with, I generated a complete first draft, also using Claude Code, then rewrote it as necessary to fix errors and match my goals. I ended up rewriting a fair bit, as well as manually migrating to `Echo` and `r3labs/sse` as it kept making some mistakes. The go test suite is fully written by AI.
