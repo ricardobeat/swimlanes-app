@@ -1,0 +1,52 @@
+.p1 {
+  padding: var(--u1);
+}
+.p2 {
+  padding: var(--u2);
+}
+.p3 {
+  padding: var(--u3);
+}
+.p4 {
+  padding: var(--u4);
+}
+
+.ph1 {
+  padding-left: var(--u1);
+  padding-right: var(--u1);
+}
+
+.ph2 {
+  padding-left: var(--u2);
+  padding-right: var(--u2);
+}
+
+.ph3 {
+  padding-left: var(--u3);
+  padding-right: var(--u3);
+}
+
+.ph4 {
+  padding-left: var(--u4);
+  padding-right: var(--u4);
+}
+
+.pv1 {
+  padding-top: var(--u1);
+  padding-bottom: var(--u1);
+}
+
+.pv2 {
+  padding-top: var(--u2);
+  padding-bottom: var(--u2);
+}
+
+.pv3 {
+  padding-top: var(--u3);
+  padding-bottom: var(--u3);
+}
+
+.pv4 {
+  padding-top: var(--u4);
+  padding-bottom: var(--u4);
+}

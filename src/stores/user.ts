@@ -8,3 +8,7 @@ export const user = writable<User>({
 export function getUserId(): string {
   return get(user).id;
 }
+
+export function setCurrentUserId(id: string): void {
+  user.update((u) => ({ ...u, id }));
+}

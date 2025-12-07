@@ -1,5 +1,4 @@
 import { writable, get } from "svelte/store";
-import { user } from "../stores/user";
 
 import type { Task } from "../types/task";
 
@@ -10,7 +9,9 @@ export function getTasks(): Task[] {
 }
 
 export function createTask(task: Task): void {
-  tasks.update((ts) => [...ts, task]);
+  if (!getTaskById(task.id)) {
+    tasks.update((ts) => [...ts, task]);
+  }
 }
 
 export function getTaskById(id: string): Task | undefined {

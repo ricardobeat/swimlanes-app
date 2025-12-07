@@ -33,19 +33,6 @@
   --border-radius-1: 3px;
 }
 
-.p1 {
-  padding: var(--u1);
-}
-.p2 {
-  padding: var(--u2);
-}
-.p3 {
-  padding: var(--u3);
-}
-.p4 {
-  padding: var(--u4);
-}
-
 .block {
   border-radius: 3px;
   background: white;

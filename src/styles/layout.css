@@ -15,6 +15,11 @@ vstack {
   flex: 1;
 }
 
+[no-flex] {
+  flex: 0;
+  align-self: center;
+}
+
 [debug] {
   outline: 2px dotted blue;
   background: rgba(90, 30, 255, 0.3);

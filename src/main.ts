@@ -18,8 +18,8 @@ const store = new Store<{ [USER_TOKEN_KEY]: string }>();
 
 const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
-    width: 640,
-    height: 380,
+    width: 720,
+    height: 420,
     titleBarStyle: "hidden",
     show: false,
     ...(process.platform !== "darwin" ? { titleBarOverlay: true } : {}),

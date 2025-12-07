@@ -8,16 +8,16 @@
   import type { Task } from "src/types/task";
 
   interface Props {
-    accept: string[];
-    name: Task["status"];
+    accept?: string[];
+    status: Task["status"];
     canAdd?: boolean;
   }
 
-  let { name, accept, canAdd = false }: Props = $props();
+  let { status, accept, canAdd = false }: Props = $props();
 
   const MT_PREFIX = "text/x-task-";
-  let currentMimetype = $derived(MT_PREFIX + name);
-  let items = $derived($tasks.filter((task) => task.status === name));
+  let currentMimetype = $derived(MT_PREFIX + status);
+  let items = $derived($tasks.filter((task) => task.status === status));
   let hoverState = $state<"idle" | "hover" | "invalid">("idle");
 
   function parseStatus(mimetype: string): string {
@@ -31,7 +31,7 @@
     const accepted = accept?.includes(sourceStatus) ?? true;
 
     // don't show hover state when dragging over the source lane
-    if (sourceStatus === name) {
+    if (sourceStatus === status) {
       return;
     }
 
@@ -56,7 +56,7 @@
     const accepted = accept?.includes(sourceStatus) ?? true;
 
     if (id && accepted) {
-      updateTaskStatus(id, name);
+      updateTaskStatus(id, status);
     }
     hoverState = "idle";
   };
@@ -71,38 +71,52 @@
   let newTaskText = $state("");
 
   const onAddTask = async (): Promise<void> => {
-    await addTask(newTaskText.trim(), name);
+    await addTask(newTaskText.trim(), status);
   };
 </script>
 
-<vstack
-  gap="2"
-  flex
-  v-top
-  class="swimlane p2 {hoverState}"
-  role="list"
-  ondragover={handleDragOver}
-  ondragleave={handleDragLeave}
-  ondrop={handleDrop}
->
-  <h2 class="title">{name}</h2>
-  {#each items as item (item.id)}
-    <div role="listitem" draggable={true} ondragstart={(event) => dragstart(event, item.id)}>
-      <Card text={item.text} />
-    </div>
-  {:else}
-    <CardPlaceholder />
-  {/each}
-  {#if canAdd}
-    <TaskInput text={newTaskText} onAdd={onAddTask} />
-  {/if}
+<vstack gap="2" flex>
+  <h2 class="title">{status}</h2>
+  <vstack
+    gap="2"
+    flex
+    v-top
+    class="swimlane p2 {hoverState}"
+    role="list"
+    ondragover={handleDragOver}
+    ondragleave={handleDragLeave}
+    ondrop={handleDrop}
+  >
+    {#each items as item (item.id)}
+      <div role="listitem" draggable={true} ondragstart={(event) => dragstart(event, item.id)}>
+        <Card text={item.text} />
+      </div>
+    {:else}
+      <CardPlaceholder />
+    {/each}
+    {#if canAdd}
+      <TaskInput bind:text={newTaskText} onAdd={onAddTask} />
+    {/if}
+  </vstack>
 </vstack>
 
 <style>
   .swimlane {
-    max-width: 320px;
-    align-self: stretch;
+    width: 100%;
     user-select: none;
+    overflow: hidden;
+    overflow-y: auto;
+    padding-bottom: 3rem;
+    scrollbar-color: black;
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: black;
+      border-radius: 3px;
+    }
   }
 
   .title {
