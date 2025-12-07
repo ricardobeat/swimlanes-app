@@ -1,8 +1,8 @@
 {
-  "name": "chlorine",
-  "productName": "chlorine",
+  "name": "swimlanes",
+  "productName": "swimlanes",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Swimlanes: dive into your tasks",
   "main": ".vite/build/main.js",
   "scripts": {
     "start": "electron-forge start",
@@ -45,5 +45,8 @@
   "dependencies": {
     "@dnd-kit-svelte/svelte": "^0.1.5",
     "electron-squirrel-startup": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
