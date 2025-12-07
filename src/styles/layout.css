@@ -1,0 +1,71 @@
+hstack {
+  display: flex;
+  align-self: stretch;
+  flex-direction: row;
+}
+
+vstack {
+  display: flex;
+  align-self: stretch;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+[flex] {
+  flex: 1;
+}
+
+[gap="1"] {
+  gap: 4px;
+}
+[gap="2"] {
+  gap: 8px;
+}
+[gap="3"] {
+  gap: 12px;
+}
+[gap="4"] {
+  gap: 16px;
+}
+
+hstack[v-top] {
+  align-items: flex-start;
+}
+hstack[v-center] {
+  align-items: center;
+}
+hstack[v-bottom] {
+  align-items: flex-end;
+}
+hstack[h-left] {
+  justify-content: flex-start;
+}
+hstack[h-center] {
+  justify-content: center;
+}
+hstack[h-right] {
+  justify-content: flex-end;
+}
+
+vstack[v-top] {
+  justify-content: flex-start;
+}
+vstack[v-center] {
+  justify-content: center;
+}
+vstack[v-bottom] {
+  justify-content: flex-end;
+}
+vstack[h-left] {
+  align-items: flex-start;
+}
+vstack[h-center] {
+  align-items: center;
+}
+vstack[h-bottom] {
+  align-items: flex-end;
+}
+
+spacer {
+  flex: 1;
+}

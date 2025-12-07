@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "Fraunces";
+  src: url("../assets/Fraunces.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+:root {
+  --u1: 4px;
+  --u2: 8px;
+  --u3: 12px;
+  --u4: 24px;
+
+  --font-title: "Fraunces";
+
+  --accent-1: #f2953e;
+  --accent-2: #ffddcb;
+  --accent-3: #abe0f0;
+}
+
+.p1 {
+  padding: var(--u1);
+}
+.p2 {
+  padding: var(--u2);
+}
+.p3 {
+  padding: var(--u3);
+}
+.p4 {
+  padding: var(--u4);
+}
+
+.block {
+  border-radius: 3px;
+  background: white;
+  border: 1.5px solid black;
+  box-shadow: 2px 3px 0 black;
+}
