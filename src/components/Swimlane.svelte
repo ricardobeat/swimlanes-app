@@ -11,18 +11,18 @@
   let { name, accept }: Props = $props();
 
   let currentMimetype = $derived(MT_PREFIX + name);
+  let items = $derived($tasks.filter((task) => task.status === name));
+  let hoverState = $state<"idle" | "hover" | "invalid">("idle");
 
   function parseStatus(mimetype: string): string {
     return mimetype.split(MT_PREFIX)[1];
   }
 
-  let items = $derived($tasks.filter((task) => task.status === name));
-  let hoverState = $state<"idle" | "hover" | "invalid">("idle");
-
   const handleDragOver = (event: DragEvent): void => {
     const sourceStatus = parseStatus(event.dataTransfer.types[0]);
     const accepted = accept?.includes(sourceStatus) ?? true;
-    // don't show hover state for source lane
+
+    // don't show hover state when dragging over the source lane
     if (sourceStatus === name) {
       return;
     }
@@ -32,11 +32,6 @@
       event.preventDefault();
     } else {
       hoverState = "invalid";
-      console.log(event);
-      const ghost = event.currentTarget.cloneNode(true);
-      ghost.style.cssText = "position: absolute; top: -1000px;";
-      document.body.appendChild(ghost);
-      event.dataTransfer.setDragImage(ghost, 10, 10);
     }
   };
 
