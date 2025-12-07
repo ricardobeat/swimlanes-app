@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { navigate } from "src/router";
+  import { navigate, p } from "src/router";
   import { loadBoard } from "src/api/board";
 
   let boardId = $state("");
@@ -32,7 +32,7 @@
     onkeydown={handleKeydown}
   />
   <button onclick={join}>Join</button>
-  <p>or <a href="/create">create your own</a></p>
+  <p>or <a href={p("/create")} onclick={() => navigate("/create")}>create your own</a></p>
 </vstack>
 
 <style>

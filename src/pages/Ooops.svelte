@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { navigate } from "src/router";
+  import { navigate, p } from "src/router";
   import { applicationError } from "src/stores/error";
 
   const restart = (): void => {
@@ -9,7 +9,7 @@
 
 <vstack h-center v-center flex gap="3">
   <h2>Ooops... something went wrong.</h2>
-  <p><a href="##" onclick={restart}>try again?</a></p>
+  <p><a href={p("/")} onclick={restart}>try again?</a></p>
   <pre>{$applicationError}</pre>
 </vstack>
 

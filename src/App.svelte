@@ -12,9 +12,9 @@
   });
 </script>
 
-<vstack class="main">
+<vstack class="main" data-test-id="app">
   <Header />
-  <Router />
+  <Router base="#" />
 </vstack>
 
 <style>
