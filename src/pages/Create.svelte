@@ -1,12 +1,24 @@
-<script>
-  import { onMount } from "svelte";
+<script lang="ts">
   import { navigate } from "src/router";
-  onMount(async () => {
-    // const response = await fetch('/api/create');
-    // const data = await response.json();
-    setTimeout(() => {
-      navigate("/");
-    }, 2000);
+  import { createBoard } from "src/api/board";
+  import Spinner from "src/components/Spinner.svelte";
+  import { applicationError } from "src/stores/error";
+
+  // This page serves as a loading page during board creation.
+  // It redirects to the board once it's created succesfully on the server.
+
+  $effect(() => {
+    // Add an artificial delay to make sure the animation has time to play a little bit
+    const delay = (n: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, n));
+    Promise.all([createBoard(), delay(1200)])
+      .then(([board]) => {
+        const boardId = board.id;
+        navigate("/board/:boardId", { params: { boardId } });
+      })
+      .catch((e) => {
+        $applicationError = e;
+        navigate("/error");
+      });
   });
 </script>
 

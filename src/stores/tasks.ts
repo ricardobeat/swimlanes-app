@@ -1,26 +1,36 @@
 import { writable, get } from "svelte/store";
+import { user } from "../stores/user";
 
-export interface Task {
-  id: string;
-  text: string;
-  status: "todo" | "ongoing" | "done";
+import type { Task } from "../types/task";
+
+export const tasks = writable<Task[]>([]);
+
+export function getTasks(): Task[] {
+  return get(tasks);
 }
 
-export const MT_PREFIX = "text/x-task-";
+export function createTask(task: Task): void {
+  tasks.update((ts) => [...ts, task]);
+}
 
-export const currentBoardId = writable<string>("");
-
-export const tasks = writable<Task[]>([
-  { id: "1", text: "Bake the cake", status: "todo" },
-  { id: "2", text: "Replace servo #2", status: "todo" },
-  { id: "3", text: "Buy chlorine tablets", status: "todo" },
-  {
-    id: "4",
-    text: "Write new release announcement",
-    status: "done",
-  },
-]);
-
-export function getTask(id: string): Task | undefined {
+export function getTaskById(id: string): Task | undefined {
   return get(tasks).find((t) => t.id === id);
+}
+
+export function getTaskIndexById(id: string): number {
+  return get(tasks).findIndex((t) => t.id === id);
+}
+
+export function removeTaskById(id: string): Task {
+  const task = getTaskById(id);
+  tasks.update((ts) => ts.filter((t) => t.id !== id));
+  return task;
+}
+
+export function updateTask(id: string, updates: Partial<Task>): Task {
+  const task = getTaskById(id);
+  const updatedAt = new Date().toISOString();
+  const updatedTask: Task = { ...task, ...updates, updatedAt };
+  tasks.update((ts) => ts.map((t) => (t.id === task.id ? updatedTask : t)));
+  return updatedTask;
 }

@@ -5,6 +5,9 @@ import started from "electron-squirrel-startup";
 import Store from "electron-store";
 import { themes } from "./styles/theme";
 
+declare const MAIN_WINDOW_VITE_DEV_SERVER_URL: string;
+declare const MAIN_WINDOW_VITE_NAME: string;
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
   app.quit();
@@ -42,9 +45,7 @@ const createWindow = (): void => {
   mainWindow.webContents.once("did-finish-load", () => {
     let userToken = store.get(USER_TOKEN_KEY);
     if (!userToken) {
-      userToken = safeStorage
-        .encryptString(crypto.randomUUID())
-        .toString("base64");
+      userToken = safeStorage.encryptString(crypto.randomUUID()).toString("base64");
       store.set(USER_TOKEN_KEY, userToken);
     }
     const initialData = {
@@ -57,9 +58,7 @@ const createWindow = (): void => {
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
   } else {
-    mainWindow.loadFile(
-      path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`),
-    );
+    mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
   }
 
   // Open the DevTools.

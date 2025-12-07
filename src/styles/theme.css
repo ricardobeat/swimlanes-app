@@ -19,6 +19,8 @@
 
   --color-text: #080803;
 
+  --color-faded: rgba(100, 100, 80, 0.5);
+
   --color-accent-1: #f2953e;
   --color-accent-2: #ffddcb;
   --color-accent-3: #abe0f0;

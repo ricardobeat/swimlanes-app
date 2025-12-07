@@ -1,8 +1,4 @@
-import type { User } from "./user";
-
-interface InitialData {
-  user: User;
-}
+import type { InitialData } from "./initialData";
 
 declare global {
   interface Window {
