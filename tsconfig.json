@@ -2,7 +2,7 @@
   "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
-    "module": "commonjs",
+    "module": "Preserve",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -11,7 +11,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "outDir": "dist",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "paths": {
       "src/*": ["./src/*"]
@@ -26,5 +26,5 @@
     "./coverage/**",
     "**/_/**"
   ],
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "./node_modules/sv-router/src/index.d.ts"]
 }
