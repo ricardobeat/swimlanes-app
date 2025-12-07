@@ -10,10 +10,10 @@ export default defineConfig([
   ...tslint.configs.recommended,
   ...svelte.configs.recommended,
   {
-    files: ["**/*.svelte"],
+    files: ["**/*.svelte", "**/*.svelte.ts"],
     languageOptions: {
       parserOptions: {
-        extraFileExtensions: [".svelte"],
+        extraFileExtensions: [".svelte", ".svelte.ts"],
         parser: ts.parser,
       },
     },
