@@ -7,11 +7,13 @@ if (started) {
   app.quit();
 }
 
-const createWindow = () => {
+const createWindow = (): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 640,
     height: 380,
+    titleBarStyle: "hidden",
+    ...(process.platform !== "darwin" ? { titleBarOverlay: true } : {}),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },

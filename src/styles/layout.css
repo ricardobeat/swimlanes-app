@@ -15,6 +15,11 @@ vstack {
   flex: 1;
 }
 
+[debug] {
+  outline: 2px dotted blue;
+  background: rgba(90, 30, 255, 0.3);
+}
+
 [gap="1"] {
   gap: 4px;
 }
