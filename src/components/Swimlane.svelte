@@ -50,11 +50,15 @@
     const accepted = accept?.includes(sourceStatus) ?? true;
 
     if (id && accepted) {
-      tasks.update((currentTasks) => {
-        return currentTasks.map((task) =>
-          task.id === id ? { ...task, status: name } : task,
-        );
-      });
+      /**
+       * why do this instead of .map()?
+       * since all tasks are in one array, this makes
+       * it show up at the bottom of whatever new status
+       * it was moved to.
+       */
+      const theTask = $tasks.find((t) => t.id === id);
+      const newTasks = $tasks.filter((t) => t.id !== id);
+      $tasks = [...newTasks, { ...theTask, status: name }];
     }
     hoverState = "idle";
   };
@@ -140,5 +144,6 @@
     top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
+    pointer-events: none;
   }
 </style>
