@@ -59,7 +59,8 @@ const getInitialData = (): InitialData => {
   return initialData;
 };
 
-const createWindow = (initialData: InitialData): void => {
+const createWindow = (): void => {
+  const initialData = getInitialData();
   const mainWindow = new BrowserWindow({
     width: 720,
     height: 420,
@@ -123,10 +124,8 @@ app.whenReady().then(() => {
       return net.fetch(pathToFileURL(pathToServe).toString());
     }
   });
-  const initialData = getInitialData();
-  // if (!process.env.CI) {
-  createWindow(initialData);
-  // }
+
+  createWindow();
 });
 
 // This method will be called when Electron has finished
