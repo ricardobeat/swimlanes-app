@@ -18,6 +18,8 @@ Other commands:
 
 To test synchronization, you can start extra app instances by running `npm run start` in a separate terminal.
 
+*Note* that the `npm test` command requires a server instance to be running on port 3002. In CI it would have its own dedicated instance.
+
 ## Electron app
 
 ```sh
@@ -35,11 +37,14 @@ The entry point for the client is the `renderer.ts` file.
 
 The server in `/server` uses the Echo HTTP framework and an SSE module that handles client subscriptions. Data is kept in memory only, restarting the server wipes it out.
 
-To apply modifications you can run the server directly:
-
 ```sh
+# run 
 cd server
 go run .
+
+# build
+go build .
+./swimlanes-server
 ```
 
 ## Other notes
