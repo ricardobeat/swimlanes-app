@@ -8,7 +8,7 @@
     <div
       transition:fade={{ duration: 200 }}
       class="modal"
-      {@attach (element) => {
+      {@attach (element: HTMLDivElement) => {
         const content = element.querySelector(".content");
         const handler = (e: MouseEvent): void => {
           if (!content.contains(e.target as Node)) {
@@ -35,7 +35,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 135, 0.8);
+    background-color: rgba(255, 255, 135, 0.88);
     z-index: 1000;
   }
 </style>

@@ -64,7 +64,7 @@ export async function updateTaskStatus(id: string, status: Task["status"]): Prom
 /**
  * Remove task
  */
-export async function removeTask(id: string): Promise<void> {
+export async function deleteTask(id: string): Promise<void> {
   const boardId = get(currentBoardId);
   if (!boardId) return;
 

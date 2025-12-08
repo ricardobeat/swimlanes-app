@@ -1,11 +1,12 @@
 <script lang="ts">
-  import Card from "./Card.svelte";
   import CardPlaceholder from "./CardPlaceholder.svelte";
   import { tasks } from "../stores/tasks.js";
-  import { addTask, updateTaskStatus } from "src/api/tasks";
+  import { addTask, updateTaskStatus, deleteTask } from "src/api/tasks";
   import TaskInput from "./TaskInput.svelte";
 
   import type { Task } from "src/types/task";
+  import TaskCard from "./TaskCard.svelte";
+  import Modal from "./Modal.svelte";
 
   interface Props {
     accept?: string[];
@@ -73,6 +74,21 @@
   const onAddTask = async (): Promise<void> => {
     await addTask(newTaskText.trim(), status);
   };
+
+  let taskToDelete = $state<Task>();
+
+  const onDeleteTask = async (task: Task): Promise<void> => {
+    taskToDelete = task;
+  };
+
+  const confirmDelete = async (): void => {
+    await deleteTask(taskToDelete.id);
+    clearTaskToDelete();
+  };
+
+  const clearTaskToDelete = (): void => {
+    taskToDelete = undefined;
+  };
 </script>
 
 <vstack gap="2" flex data-testid="swimlane">
@@ -91,10 +107,10 @@
       <div
         role="listitem"
         draggable={true}
-        ondragstart={(event) => dragstart(event, item.id)}
+        ondragstart={(event: DragEvent) => dragstart(event, item.id)}
         data-testid="draggable-task"
       >
-        <Card text={item.text} />
+        <TaskCard text={item.text} onDelete={() => onDeleteTask(item)} />
       </div>
     {:else}
       <CardPlaceholder />
@@ -103,6 +119,17 @@
       <TaskInput bind:text={newTaskText} onAdd={onAddTask} />
     {/if}
   </vstack>
+
+  <Modal visible={!!taskToDelete}>
+    <vstack gap="3">
+      <p><b>Are you sure</b> you want to delete this task?</p>
+      <TaskCard text={taskToDelete.text} />
+      <hstack gap="2">
+        <button secondary onclick={clearTaskToDelete}>Cancel</button>
+        <button onclick={confirmDelete}>Delete</button>
+      </hstack>
+    </vstack>
+  </Modal>
 </vstack>
 
 <style>

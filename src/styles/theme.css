@@ -72,3 +72,9 @@ button,
     padding: var(--u1) var(--u3);
   }
 }
+
+button[secondary],
+.button.secondary {
+  background-color: transparent;
+  color: var(--color-dark);
+}

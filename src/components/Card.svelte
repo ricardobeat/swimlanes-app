@@ -1,5 +1,7 @@
 <script lang="ts">
-  let { text }: { text: string } = $props();
+  import type { Snippet } from "svelte";
+
+  let { children }: { children: Snippet } = $props();
 </script>
 
-<div class="card block p2">{text}</div>
+<div class="card block p2">{@render children()}</div>
